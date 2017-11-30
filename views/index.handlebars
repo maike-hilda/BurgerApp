@@ -1,18 +1,25 @@
-<h1>Burger</h1>
-
-<h3>Choose One</h3>
-
-<ul>
-  {{#each tasks}}
-  	<li>
-  	   <p>ID: {{id}}</p>
-       <p>Task: {{task}}</p>
-  	</li>
-  {{/each}}
-</ul>
-
-<form action="/" method="POST">
-	<textarea type="text" name="task"></textarea>
-
-	<button type="submit">Submit</button>
-</form>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center" id="top-bar">
+            <h1>Burger App</h1>
+        </div>
+        <div class="col-sm-6 text-center" id="task">
+            <div class="row">
+                {{#each burgerData}}
+                    {{#unless this.devoured}}
+                <div class="col-sm-9 text-center">
+                    <pre>{{this.id}}. {{this.burger_name}}</pre>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <form method="POST" action="/burgers/update?_method=PUT" class="button-size">
+                        <input type="hidden" name"burger_id" type="text" value={{this.id}}>
+                        <br/>
+                        <button type="hidden" name="burger_id" type="text" value={{this.id}}>Devour it!</button>
+                    </form>
+                </div>
+                {{/unless}}
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
